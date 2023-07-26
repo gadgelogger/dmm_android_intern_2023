@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
 <!--  追加  -->
+
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -28,6 +29,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".ui.timeline.PublicTimelineActivity"
+            android:exported="false" />
 
 <!--    追加    -->
     </application>
