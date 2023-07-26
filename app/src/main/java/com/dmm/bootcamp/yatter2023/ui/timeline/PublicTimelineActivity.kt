@@ -6,6 +6,7 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.Surface
+import com.dmm.bootcamp.yatter2023.ui.post.PostActivity
 import com.dmm.bootcamp.yatter2023.ui.theme.Yatter2023Theme
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -25,7 +26,11 @@ class PublicTimelineActivity : AppCompatActivity() {
                 Surface {
                     PublicTimelinePage(viewModel = viewModel)
                 } }
-        } }
+        }
+        viewModel.navigateToPost.observe(this) {
+            startActivity(PostActivity.newIntent(this))
+        }
+    }
     override fun onResume() {
         super.onResume()
         viewModel.onResume()

@@ -71,6 +71,7 @@ private fun PublicTimelineTemplatePreview() {
     Yatter2023Theme {
         Surface {
             PublicTimelineTemplate(
+
                 statusList = listOf(
                     StatusBindingModel(
                         id = "id",
@@ -84,7 +85,9 @@ private fun PublicTimelineTemplatePreview() {
                 isLoading = false,
                 isRefreshing = false,
                 onRefresh = {},
+
             )
         }
+
     }
 }
