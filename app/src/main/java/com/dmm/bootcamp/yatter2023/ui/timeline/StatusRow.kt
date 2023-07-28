@@ -1,4 +1,5 @@
 package com.dmm.bootcamp.yatter2023.ui.timeline
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -12,10 +13,15 @@ import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.dmm.bootcamp.yatter2023.ui.theme.Yatter2023Theme
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.ContentAlpha
+import androidx.compose.material.Divider
 import androidx.compose.material.LocalContentAlpha
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 
 @Composable
 fun StatusRow(
@@ -28,22 +34,31 @@ fun StatusRow(
             .padding(vertical = 4.dp)
     ) {
         AsyncImage(
-            modifier = Modifier.size(48.dp),
+            modifier = Modifier
+                .size(48.dp)
+                .clip(CircleShape),
             model = statusBindingModel.avatar,
             contentDescription = "アバター画像",
             contentScale = ContentScale.Crop,
         )
-        Column {
+        Column(
+            modifier = Modifier.padding(start = 16.dp)
+        ) {
             Row {
-                Text(text = statusBindingModel.displayName)
-                CompositionLocalProvider(LocalContentAlpha provides
-                        ContentAlpha.medium) {
+                Text(
+                    text = statusBindingModel.displayName, color = MaterialTheme.colors.onPrimary
+                )
+                CompositionLocalProvider(LocalContentAlpha provides ContentAlpha.medium) {
                     Text(
-                        text = "@${statusBindingModel.username}"
+                        text = "@${statusBindingModel.username}",
+                        color = MaterialTheme.colors.onPrimary
                     )
                 }
+
             }
-            Text(text = statusBindingModel.content)
+            Text(
+                text = statusBindingModel.content, color = MaterialTheme.colors.onPrimary
+            )
             Row(modifier = Modifier.fillMaxWidth()) {
                 statusBindingModel.attachmentMediaList.forEach {
                     AsyncImage(
@@ -73,7 +88,8 @@ private fun StatusRowPreview() {
                         MediaBindingModel(
                             id = "id",
                             type = "image",
-                            url = "https://avatars.githubusercontent.com/u/39693306? v=4", description = "icon"
+                            url = "https://avatars.githubusercontent.com/u/39693306? v=4",
+                            description = "icon"
                         )
                     )
                 )

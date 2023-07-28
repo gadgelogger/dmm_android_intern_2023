@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.sp
 import com.dmm.bootcamp.yatter2023.ui.theme.Yatter2023Theme
 
 @Composable
-fun LoginTemplate(
+fun SignupTemplate(
     userName: String,
     onChangedUserName: (String) -> Unit,
     password: String,
@@ -55,7 +55,7 @@ fun LoginTemplate(
                     .padding(top = 110.dp, start = 15.dp)  // 調整して適切な位置に配置
             ) {
                 Text(
-                    text = "Login",
+                    text = "Signup",
                     style = MaterialTheme.typography.h3,  // お好みのスタイルに調整
                     fontWeight = FontWeight.Bold,
                     fontSize = 80.sp
@@ -69,8 +69,7 @@ fun LoginTemplate(
                     .padding(bottom = 16.dp, top = 100.dp),
                 value = userName,
                 onValueChange = onChangedUserName,
-                singleLine = true,
-                        placeholder = {
+                placeholder = {
                     Text(text = "ユーザーネーム")
                 },
                 colors = TextFieldDefaults.textFieldColors(
@@ -84,7 +83,6 @@ fun LoginTemplate(
                     .padding(bottom = 16.dp),
                 value = password,
                 onValueChange = onChangedPassword,
-                singleLine = true,
                 placeholder = {
                     Text(text = "パスワード")
                 },
@@ -93,16 +91,6 @@ fun LoginTemplate(
                 )
             )
             Button(
-                enabled = isEnableLogin,
-                onClick = onClickLogin,
-                modifier = Modifier
-                    .fillMaxWidth(),
-                shape = RoundedCornerShape(50),
-
-                ) {
-                Text(text = "ログイン")
-            }
-            OutlinedButton(
                 enabled = isEnableLogin,
                 onClick = onClickLogin,
                 modifier = Modifier
@@ -122,10 +110,10 @@ fun LoginTemplate(
 
 @Preview
 @Composable
-fun LoginTemplatePreview() {
+fun SignupTemplatePreview() {
     Yatter2023Theme {
         Surface {
-            LoginTemplate(
+            SignupTemplate(
                 userName = "username",
                 onChangedUserName = {},
                 password = "password",

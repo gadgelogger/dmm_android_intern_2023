@@ -1,6 +1,7 @@
 package com.dmm.bootcamp.yatter2023.ui.timeline
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.dmm.bootcamp.yatter2023.domain.repository.StatusRepository
@@ -12,11 +13,14 @@ import kotlinx.coroutines.launch
 
 class PublicTimelineViewModel(
     private val statusRepository: StatusRepository,
+
 ) :  ViewModel() {
     private val _uiState: MutableStateFlow<PublicTimelineUiState> =
         MutableStateFlow(PublicTimelineUiState.empty())
     val uiState: StateFlow<PublicTimelineUiState> = _uiState
 
+    // ログイン画面へ遷移するためのLiveData
+    val jumpToLoginPage = MutableLiveData<Unit>()
     private val _navigateToPost: SingleLiveEvent<Unit> = SingleLiveEvent()
     val navigateToPost: LiveData<Unit> = _navigateToPost
 
@@ -45,4 +49,10 @@ class PublicTimelineViewModel(
             _uiState.update { it.copy(isRefreshing = false) } // 4
         }
     }
+    // ログアウトメソッド
+    fun onLogout() {
+        jumpToLoginPage.value = Unit
+    }
+
+
 }

@@ -110,14 +110,20 @@ fun PostTemplate(
 }
 @Preview
 @Composable
-fun PostTemplatePreview() {
+private fun PostTemplatePreview() {
     Yatter2023Theme {
-        Surface() {
-            PostTemplate()
+        Surface {
+            PostTemplate(
+                postBindingModel = PostBindingModel(
+                    avatarUrl = null,
+                    statusText = ""
+                ),
+                isLoading = false,
+                canPost = false,
+                onStatusTextChanged = {},
+                onClickPost = {},
+                onClickNavIcon = {}
+            )
         }
-    }
-}
+    }}
 
-fun PostTemplate() {
-    TODO("Not yet implemented")
-}
